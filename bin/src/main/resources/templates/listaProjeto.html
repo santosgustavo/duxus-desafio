@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>Portifolio</title>
+	 <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <link rel="stylesheet" href="style/styleCss.css"/>
+</head>
+<body>
+	<header>
+		<nav class="menu">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo">Lista de Projetos</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a th:href="@{/projetos/novo}" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Projeto</a></li>
+		      </ul>
+		        <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a th:href="@{/projetos/download}" class="waves-effect waves-light btn"><i class="material-icons left">import_export</i>Exportar JSON</a></li>
+		      </ul>
+		    </div>
+		</nav>
+	
+	<table class="container">
+		<thead>
+			<tr>
+				<th>Apelido</th>
+				<th>Descrição</th>
+				<th>Cliente</th>
+				<th>Status</th>
+				<th>Screenshot URL</th>
+			</tr>
+		</thead>
+		<tbody> 
+			<tr th:each="projeto : ${listaProjeto}">
+				<td><span th:text="${projeto.apelido}"></span></td>
+				<td><span th:text="${projeto.descricao}"></span></td>
+				<td><span th:text="${projeto.nomeCliente}"></span></td>
+				<td><span th:text="${projeto.status}"></span></td>
+				<td><span th:text="${projeto.screenshot}"></span></td>
+			
+				<td><a class="waves-effect waves-light btn-small" th:href="@{/projetos/editar/{id}(id = ${projeto.id})}"><i class="material-icons left">create</i></a></td>
+				<td><a class="waves-effect waves-light btn-small" th:href="@{/projetos/deletar/{id}(id = ${projeto.id})}"><i class="material-icons left">delete</i></a></td>
+			</tr>
+		</tbody>
+	
+	</table>
+	</header>
+	
+</body>
+
+
+</html>
