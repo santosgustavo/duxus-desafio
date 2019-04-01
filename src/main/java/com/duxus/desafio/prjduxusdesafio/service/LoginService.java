@@ -13,12 +13,7 @@ public class LoginService {
 	
 	public Usuario autenticar(String usuario, String senha) {
 
-		//Para debugar
-		Usuario user = repo.checkUsuario(usuario,senha);
-
-		
-		return null;
-		//return repo.checkUsuario(usuario, senha);
+		return repo.checkUsuario(usuario, senha);
 	}
 	
 }

@@ -1,6 +1,7 @@
 package com.duxus.desafio.prjduxusdesafio.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -18,14 +19,14 @@ public class LoginController {
 	LoginService service;
 	
 	@RequestMapping(value="/autenticar", method=RequestMethod.POST)
-	public ResponseEntity<?> login(@RequestHeader String usuario, String senha){
+	public ResponseEntity<?> login(@RequestHeader String usuario,@RequestHeader String senha){
 		Usuario user = service.autenticar(usuario, senha);
 		
 		if(user != null) {
 			return ResponseEntity.ok().build();
 		}
 		
-		return ResponseEntity.noContent().build();
+		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 	}
 	
 }
